@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper	namespace="com.yufan.dao.UserDao">
+	<resultMap type="User" id="UserResultMap">
+		<id property="id" column="u_id"/>
+		<result property="name" column="u_name"/>
+		<result property="password" column="u_password"/>
+		<result property="gender" column="u_gender"/>
+		<result property="age" column="u_age"/>
+		
+	</resultMap>
+	<select id="queryUser" resultMap="UserResultMap">
+		select * from yufan_user 
+	</select>
+	<select id="queryUserById" resultMap="UserResultMap">
+		select * from yufan_user where u_id =#{id}
+	</select>
+
+	<insert id="saveUser">
+		insert into yufan_user(u_name,u_password,u_gender,u_age)
+		value(#{name},#{password},#{gender},#{age})
+	</insert>
+	<update id="updataUser">
+		update yufan_user set u_name=#{name},u_password = #{password},u_gender= #{gender},u_age=#{age}
+			where u_id = #{id}
+	</update>
+	<delete id="removeUserById">
+		delete from yufan_user
+		 where u_id = #{id}
+	</delete>
+</mapper>
